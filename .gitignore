@@ -1,0 +1,19 @@
+# Global ignores
+node_modules
+.env
+.DS_Store
+
+# Frontend specific
+frontend/.next
+frontend/out
+
+# Backend specific
+backend/dist
+
+# Logs
+logs
+*.log
+
+# IDE/editor configs
+.vscode
+.idea
