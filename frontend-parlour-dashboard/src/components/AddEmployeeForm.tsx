@@ -12,7 +12,7 @@ export default function AddEmployeeForm({ onEmployeeAdded }: { onEmployeeAdded: 
 
     try {
       const token = getToken();
-      await axios.post('http://localhost:5000/api/employees', 
+      await axios.post('${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees', 
         { name },
         {
           headers: { Authorization: `Bearer ${token}` }
