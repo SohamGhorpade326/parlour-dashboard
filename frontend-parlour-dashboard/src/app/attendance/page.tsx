@@ -2,18 +2,22 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { socket } from '../../utils/socket';
 import PunchCard from '../../components/PunchCard';
+import { Employee } from '../../types';
 
 export default function AttendancePage() {
-  const [employees, setEmployees] = useState<any[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
 
   useEffect(() => {
     const fetchEmployees = async () => {
-      const res = await axios.get('http://localhost:5000/api/employees', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      });
-      setEmployees(res.data);
+      try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
+        setEmployees(res.data);
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     fetchEmployees();
