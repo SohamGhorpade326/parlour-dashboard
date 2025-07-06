@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { getToken } from '../lib/auth';
+import { Employee } from '../types';
 
 interface AddTaskFormProps {
-  employees: any[];
+  employees: Employee[];
   onTaskAdded: () => void;
 }
 
@@ -19,7 +20,7 @@ export default function AddTaskForm({ employees, onTaskAdded }: AddTaskFormProps
 
     try {
       const token = getToken();
-      await axios.post('http://localhost:5000/api/tasks', 
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tasks`,
         { title, assignedTo },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -29,7 +30,7 @@ export default function AddTaskForm({ employees, onTaskAdded }: AddTaskFormProps
       alert('Task Added');
       setTitle('');
       setAssignedTo('');
-      onTaskAdded();  // Refresh task list
+      onTaskAdded();
     } catch (err) {
       console.error(err);
       alert('Error adding task');

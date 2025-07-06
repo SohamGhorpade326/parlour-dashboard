@@ -2,8 +2,13 @@
 
 import { socket } from '../utils/socket';
 import { useState } from 'react';
+import { Employee } from '../types';
 
-export default function PunchCard({ employee }: { employee: any }) {
+interface PunchCardProps {
+  employee: Employee;
+}
+
+export default function PunchCard({ employee }: PunchCardProps) {
   const [status, setStatus] = useState<'In' | 'Out'>('Out');
 
   const handlePunch = () => {

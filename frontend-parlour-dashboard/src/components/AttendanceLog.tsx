@@ -1,6 +1,6 @@
 'use client';
-
-export default function AttendanceLog({ logs }: { logs: any[] }) {
+import { AttendanceLogEntry } from '../types';
+export default function AttendanceLog({ logs }: { logs: AttendanceLogEntry[] }) {
   return (
     <div>
       <h2 className="text-xl mb-2">Attendance Logs</h2>
